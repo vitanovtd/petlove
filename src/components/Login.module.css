@@ -1,0 +1,17 @@
+.login{
+    height: 100vh;
+    display:flex;
+    align-items: center;
+    justify-content:  center;
+}
+.formOne {
+    display: flex;
+    flex-direction: column;
+
+} 
+
+.spanOne {
+    font-size: 12px;
+    color: red;
+}
+
