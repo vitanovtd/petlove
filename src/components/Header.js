@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import styles from './Header.module.css';
-
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -18,15 +18,15 @@ const Header = () => {
                         />
                         <nav className={styles['main-nav-list']}>
                             <ul className={styles['main-nav-list']}>
-                                <li>
-                                    <a className={styles['main-nav-link']} href="#">
+                                <li >
+                                    <Link className={styles['main-nav-link']} to="/login">
                                         Login
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a className={styles['main-nav-link']} href="#">
+                                    <Link className={styles['main-nav-link']} to="/register">
                                         Register
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <a className={styles['main-nav-link']} href="#">
