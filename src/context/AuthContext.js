@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ current: state.current, dispatch }}>
+        <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch }}>
             {children}
         </AuthContext.Provider>
     );

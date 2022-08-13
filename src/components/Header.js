@@ -34,9 +34,9 @@ const Header = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a className={styles['main-nav-link']} href="#">
+                                    <Link className={styles['main-nav-link']} to="/logout">
                                         Logout
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <a className={styles['main-nav-link', 'nav-cta']} href="#">
