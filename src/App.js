@@ -3,11 +3,14 @@ import './App.css';
 import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
+import Register from './components/Register';
+
+import AddNewPet from './components/Pets/AddNewPet';
+
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
-import Register from './components/Register';
-import Logout from './components/Logout';
+
 
 
 function App() {
@@ -16,8 +19,10 @@ function App() {
 
 
   const RequireAuth = ({ children }) => {
+    console.log(children);
     return currentUser ? (children) : <Navigate to="/login" />
   }
+
 
   return (
     <div className="App">
@@ -26,8 +31,10 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/Register' element={<Register />} />
-        <Route path='/Logout' element={<Logout />} />
-        <Route path='/Logout' element={<Navigate to="/" replace={true} />} />
+
+
+
+        <Route path='/add' element={<RequireAuth><AddNewPet /></RequireAuth>} />
 
         <Route path="/*" element={<Navigate to="/" replace={true} />} />
 

@@ -1,8 +1,33 @@
 import { Fragment } from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
 
+
+import { signOut } from "firebase/auth";
+import { auth } from '../firebase';
 const Header = () => {
+    const { dispatch } = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
+
+    const logoutHandler = (e) => {
+        e.preventDefault();
+
+        signOut(auth).then(() => {
+            // Sign-out successful.
+
+            dispatch({ type: "LOGOUT" })
+
+        }).catch((error) => {
+            // An error happened.
+        });
+    }
+
+
+
+
+
     return (
         <Fragment>
 
@@ -28,13 +53,19 @@ const Header = () => {
                                         Register
                                     </Link>
                                 </li>
+                                {currentUser && (
+                                    <li>
+
+                                        <Link className={styles['main-nav-link']} to="/add">
+                                            Add a pet
+
+                                        </Link>
+
+
+                                    </li>
+                                )}
                                 <li>
-                                    <a className={styles['main-nav-link']} href="#">
-                                        Add a pet
-                                    </a>
-                                </li>
-                                <li>
-                                    <Link className={styles['main-nav-link']} to="/logout">
+                                    <Link className={styles['main-nav-link']} to="/" onClick={logoutHandler}>
                                         Logout
                                     </Link>
                                 </li>

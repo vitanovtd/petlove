@@ -12,7 +12,10 @@ const AuthReducer = (state, action) => {
         }
 
         case "LOGOUT": {
+
+
             return {
+
                 currentUser: null,
             };
         }

@@ -5,15 +5,11 @@
     max-height: 80%;
   }
   
-  .wthree-almub {
-    background: url(../img/2.jpg) no-repeat center;
+  .almub {
+    background: url(../../../public/assets/img/section.jpg) no-repeat center 0px;
     background-size: cover;
-    min-height: 234px;
-    -webkit-transition: all 3s;
-    -moz-transition: all 3s;
-    -o-transition: all 3s;
-    transition: all 3s;
-    display: block;
+    min-height: 100rem;
+    object-fit: contain;
   }
   
   .breeds-right {
