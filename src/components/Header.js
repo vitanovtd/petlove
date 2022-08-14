@@ -54,21 +54,22 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 {currentUser && (
-                                    <li>
+                                    <>
+                                        <li>
 
-                                        <Link className={styles['main-nav-link']} to="/add">
-                                            Add a pet
+                                            <Link className={styles['main-nav-link']} to="/add">
+                                                Add a pet
 
-                                        </Link>
-
-
-                                    </li>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className={styles['main-nav-link']} to="/" onClick={logoutHandler}>
+                                                Logout
+                                            </Link>
+                                        </li>
+                                    </>
                                 )}
-                                <li>
-                                    <Link className={styles['main-nav-link']} to="/" onClick={logoutHandler}>
-                                        Logout
-                                    </Link>
-                                </li>
+
                                 <li>
                                     <a className={styles['main-nav-link', 'nav-cta']} href="#">
                                         Section 5
