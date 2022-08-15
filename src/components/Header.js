@@ -57,7 +57,7 @@ const Header = () => {
                                     <>
                                         <li>
 
-                                            <Link className={styles['main-nav-link']} to="/add">
+                                            <Link className={styles['main-nav-link']} to="/pets/add">
                                                 Add a pet
 
                                             </Link>

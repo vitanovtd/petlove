@@ -10,6 +10,8 @@ import AddNewPet from './components/Pets/AddNewPet';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
+import EditPet from './components/Pets/EditPet';
+import AvailablePets from './components/Pets/AvailablePets';
 
 
 
@@ -34,7 +36,10 @@ function App() {
 
 
 
-        <Route path='/add' element={<RequireAuth><AddNewPet /></RequireAuth>} />
+        <Route path='/pets/add' element={<RequireAuth><AddNewPet /></RequireAuth>} />
+        <Route path='/pets/edit' element={<RequireAuth><EditPet /></RequireAuth>} />
+
+        <Route path='/pets' element={<AvailablePets></AvailablePets>} />
 
         <Route path="/*" element={<Navigate to="/" replace={true} />} />
 

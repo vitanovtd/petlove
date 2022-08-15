@@ -1,0 +1,55 @@
+.breeds-left {
+    max-height: 80%;
+  }
+
+  .wthree-almub {
+    
+    background-size: cover;
+    min-height: 234px;
+    -webkit-transition: all 3s;
+    -moz-transition: all 3s;
+    -o-transition: all 3s;
+    transition: all 3s;
+    display: block;
+  }
+  
+
+
+.card-btn {
+    font-size: 1.8rem;
+    padding: 1rem 5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    width: 15rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    background-color: #68b403;
+    transition: all 0.3s;
+  }
+
+.card-btn:hover,
+.card-btn:active {
+  background-color: #539002;
+}
+
+.breeds-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+  }
+
+
+.card-title {
+    font-size: 3.5rem;
+    padding: 1rem;
+  }
+  
+  .card-paragraph {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    padding: 0 1rem;
+  }

@@ -8,9 +8,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 
-
-const AddNewPet = () => {
-    const ctx = useContext(PetContext)
+const EditPet = () => {
+    const ctx = useContext(PetContext);
     const { currentUser } = useContext(AuthContext);
 
 
@@ -20,20 +19,18 @@ const AddNewPet = () => {
     const [description, setDescription] = useState("");
 
 
-    const handleAddPet = async (e) => {
+    const handlerEditPet = async (e) => {
         e.preventDefault();
-        // await ctx.getAll()
 
-
-        //Add new Pet 
-        ctx.addNewPet({
+        // UPDATE ONE
+        ctx.updateCurrentPet({
+            id: ctx.pets[1].id,
             name,
             bread,
             imageUrl,
             description,
             ownerId: currentUser.uid
         });
-
 
 
     }
@@ -44,10 +41,11 @@ const AddNewPet = () => {
 
 
 
+
         <div className="container">
             <h1>Add Pet</h1>
             <div className={styles.almub}>
-                <form onSubmit={handleAddPet}>
+                <form onSubmit={handlerEditPet}>
                     <label htmlFor="name">name</label>
                     <input type="text" name="name" onChange={e => setName(e.target.value)} />
                     <label htmlFor="bread">bread</label>
@@ -61,16 +59,8 @@ const AddNewPet = () => {
                 </form>
             </div>
         </div>
-
-
-
     );
-
-
-
-
-
 }
 
 
-export default AddNewPet;
+export default EditPet;
