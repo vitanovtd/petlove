@@ -33,7 +33,8 @@ const AddNewPet = () => {
             bread,
             imageUrl,
             description,
-            ownerId: currentUser.uid
+            ownerId: currentUser.uid,
+            likedBy: [],
         });
 
 
@@ -49,18 +50,27 @@ const AddNewPet = () => {
         <div className="container">
             <h1>Add Pet</h1>
             <div className={styles.almub}>
-                <form onSubmit={handleAddPet}>
-                    <label htmlFor="name">name</label>
-                    <input type="text" name="name" onChange={e => setName(e.target.value)} />
-                    <label htmlFor="bread">bread</label>
-                    <input type="text" name="bread" onChange={e => setBread(e.target.value)} />
-
-                    <label htmlFor="imageUrl">Image URL</label>
-                    <input type="text" name="imageUrl" placeholder="https://" onChange={e => setImageUrl(e.target.value)} />
-                    <label htmlFor="description">description</label>
-                    <input type="textarea" name="description" onChange={e => setDescription(e.target.value)} />
-                    <button type="submit">Add</button>
-                </form>
+                <div className={styles['wrapper-form']}>
+                    <div className={styles['space']}></div>
+                    <form className='grid grid--2-cols' onSubmit={handleAddPet}>
+                        <div className={styles['field-form']}>
+                            <label className={styles['label-field']} htmlFor="name">name</label>
+                            <input className={styles['input-field']} type="text" name="name" onChange={e => setName(e.target.value)} />
+                            <label className={styles['label-field']} htmlFor="bread">bread</label>
+                            <input className={styles['input-field']} type="text" name="bread" onChange={e => setBread(e.target.value)} />
+                        </div>
+                        <div className={styles['field-form']}>
+                            <label className={styles['label-field']} htmlFor="imageUrl">Image URL</label>
+                            <input className={styles['input-field']} type="text" name="imageUrl" placeholder="https://" onChange={e => setImageUrl(e.target.value)} />
+                            <label className={styles['label-field']} htmlFor="description">description</label>
+                            <input className={styles['input-field']} type="textarea" name="description" onChange={e => setDescription(e.target.value)} />
+                        </div>
+                    </form>
+                    <div class={styles['btn-form-container']}>
+                        <button className={styles['submit-button']} type="submit">Add</button>
+                        <p class="p-auth-info">Have already an account? <a class="link-auth" href="#">Login</a></p>
+                    </div>
+                </div>
             </div>
         </div>
 

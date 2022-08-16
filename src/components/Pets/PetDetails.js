@@ -15,6 +15,9 @@ const PetDetails = () => {
 
     const [confirmDelete, setConfirmDelete] = useState(false);
 
+    const [isLiked, setIsLiked] = useState(null);
+
+
     const navigate = useNavigate();
 
     // const info = getOne(petId)
@@ -24,27 +27,25 @@ const PetDetails = () => {
 
     const { currentUser } = useContext(AuthContext);
 
-
-
     const isOwner = pet.ownerId === currentUser?.uid;
 
-
-
-
     const [liked, setLikes] = useState(null);
-
-
 
     useEffect(() => {
         getOne(petId).then((pet) => {
             setPet(pet);
 
+
+
         })
+
     }, [ctx, petId, currentUser]);
+
 
     console.log(ctx);
 
-    const editHandler = () => {
+    const editHandler = (e) => {
+        e.preventDefault();
 
         navigate(`/pets/${petId}/edit`)
     }
@@ -78,7 +79,7 @@ const PetDetails = () => {
                     {pet.description}
                 </p>
                 {currentUser && !isOwner && (
-                    <button className={styles['card-btn']} >Like</button>
+                    <button className={styles['card-btn']} >{isLiked ? 'Liked' : 'Like'}</button>
                 )
                 }
                 {isOwner &&

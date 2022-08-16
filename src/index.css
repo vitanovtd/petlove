@@ -84,6 +84,10 @@ body {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.card-grid-wrapper {
+  margin-bottom: 9.6rem;
+}
+
 .grid--center--v {
   align-items: center;
 }

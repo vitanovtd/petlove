@@ -86,7 +86,7 @@ const Header = () => {
                                 )}
 
                                 <li>
-                                    <a className={styles['main-nav-link', 'nav-cta']} href="#">
+                                    <a className={styles['ctabtn']} href="#">
                                         Section 5
                                     </a>
                                 </li>

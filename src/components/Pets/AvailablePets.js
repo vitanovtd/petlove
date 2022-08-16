@@ -14,17 +14,12 @@ const AvailablePets = () => {
 
     const pets = ctx.pets;
 
-
-
-
-
-
     return (
         <div className="container">
             <h3 className={styles['breeds-wrapper-title']}>Available Pets</h3>
             <div className="grid grid--2-cols card-grid-wrapper">
                 {pets.length > 0
-                    ? pets.map(pet => <PetItem key={pet.id} pet={pet} />)
+                    ? pets.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)
                     : <h2>No pets available at this moment</h2>
                 }
             </div>

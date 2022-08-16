@@ -19,14 +19,15 @@ const EditPet = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
 
-    const petId = useParams()
+    const { petId } = useParams()
     console.log(petId)
+    console.log(ctx.pets);
     const handlerEditPet = async (e) => {
         e.preventDefault();
 
         // UPDATE ONE
         ctx.updateCurrentPet({
-            id: ctx.pets[1].id,
+            id: petId,
             name,
             bread,
             imageUrl,

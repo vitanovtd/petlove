@@ -10,7 +10,7 @@
 
 
 .banner {
-    min-height: 79.5rem;
+    min-height: 35.5rem;
     background: url(/public/assets/img/banner.jpg) no-repeat center 0px;
     background-size: cover;
     position: relative;
@@ -56,3 +56,26 @@
   .main-nav-link.nav-cta:active {
     background-color: #539002;
   }
+
+  .ctabtn {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.8rem;
+    transition: all 0.3s;
+  }
+
+  .ctabtn:link,
+  .ctabtn:visited {
+    padding: 1.2rem 2.4rem;
+    border-radius: 9px;
+    color: #fff;
+    background-color: #68b403;
+  }
+  
+  .ctabtn:hover,
+  .ctabtn:active {
+    background-color: #539002;
+  }
+
