@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { collection, doc, getDocs, addDoc, updateDoc, setDoc, onSnapshot, getDoc } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, updateDoc, setDoc, onSnapshot, getDoc, deleteDoc } from "firebase/firestore";
 
 
 
@@ -9,9 +9,17 @@ export async function addPet(data) {
     return await addDoc(collection(db, "pets"), data)
 }
 
+
+export async function getOne(petId) {
+    const docRef = (doc(db, "pets", petId));
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+    // return docSnap.data();
+}
+
 export async function getAll() {
     const querySnapshot = await getDocs(collection(db, "pets"));
-    return querySnapshot
+    return querySnapshot;
 }
 
 export async function updatePet(pet) {
@@ -26,8 +34,12 @@ export async function updatePet(pet) {
     });
     const docRef = doc(db, "pets", pet.id);
     const docSnap = await getDoc(docRef);
-    return docSnap.data()
+    return docSnap.data();
 
+}
+
+export async function deletePet(petId) {
+    return await deleteDoc(doc(db, "pets", petId));
 }
 
 

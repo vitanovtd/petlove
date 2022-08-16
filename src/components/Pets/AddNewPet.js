@@ -6,6 +6,7 @@ import { getAll } from '../../services/petService'
 import { PetContext } from '../../context/PetContext'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -19,6 +20,7 @@ const AddNewPet = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
 
+    const navigate = useNavigate();
 
     const handleAddPet = async (e) => {
         e.preventDefault();
@@ -35,7 +37,7 @@ const AddNewPet = () => {
         });
 
 
-
+        navigate('/');
     }
 
 

@@ -12,6 +12,7 @@ import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
 import EditPet from './components/Pets/EditPet';
 import AvailablePets from './components/Pets/AvailablePets';
+import PetDetails from './components/Pets/PetDetails';
 
 
 
@@ -37,9 +38,13 @@ function App() {
 
 
         <Route path='/pets/add' element={<RequireAuth><AddNewPet /></RequireAuth>} />
-        <Route path='/pets/edit' element={<RequireAuth><EditPet /></RequireAuth>} />
 
         <Route path='/pets' element={<AvailablePets></AvailablePets>} />
+        <Route path='/pets/:petId' element={<PetDetails />} />
+
+        <Route path='/pets/:petId/edit' element={<RequireAuth><EditPet /></RequireAuth>} />
+
+
 
         <Route path="/*" element={<Navigate to="/" replace={true} />} />
 

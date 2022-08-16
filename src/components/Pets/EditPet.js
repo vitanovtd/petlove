@@ -6,6 +6,7 @@ import { getAll } from '../../services/petService'
 import { PetContext } from '../../context/PetContext'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useParams } from 'react-router-dom';
 
 
 const EditPet = () => {
@@ -18,7 +19,8 @@ const EditPet = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
 
-
+    const petId = useParams()
+    console.log(petId)
     const handlerEditPet = async (e) => {
         e.preventDefault();
 
@@ -43,7 +45,7 @@ const EditPet = () => {
 
 
         <div className="container">
-            <h1>Add Pet</h1>
+            <h1>Edit Pet</h1>
             <div className={styles.almub}>
                 <form onSubmit={handlerEditPet}>
                     <label htmlFor="name">name</label>
@@ -55,7 +57,7 @@ const EditPet = () => {
                     <input type="text" name="imageUrl" placeholder="https://" onChange={e => setImageUrl(e.target.value)} />
                     <label htmlFor="description">description</label>
                     <input type="textarea" name="description" onChange={e => setDescription(e.target.value)} />
-                    <button type="submit">Add</button>
+                    <button type="submit">Edit</button>
                 </form>
             </div>
         </div>

@@ -6,7 +6,8 @@ import { addPet, getAll, updatePet } from "../services/petService";
 export const PetContext = createContext({
     pets: [],
     addNewPet: (pet) => { },
-    updateCurrentPet: (pet) => { }
+    updateCurrentPet: (pet) => { },
+    removePet: (petId) => { },
 })
 
 export const PetContextProvider = (props) => {
@@ -52,6 +53,10 @@ export const PetContextProvider = (props) => {
         setPets(updatedPets)
     }
 
+    const removePet = (petId) => {
+        setPets((prevState) => prevState.filter((pet) => pet.id !== petId));
+    };
+
 
 
     return (
@@ -59,7 +64,8 @@ export const PetContextProvider = (props) => {
             value={{
                 pets,
                 addNewPet,
-                updateCurrentPet
+                updateCurrentPet,
+                removePet,
             }}>
             {props.children}
         </PetContext.Provider>
