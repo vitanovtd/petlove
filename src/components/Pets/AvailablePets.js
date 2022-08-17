@@ -13,7 +13,6 @@ const AvailablePets = () => {
     const ctx = useContext(PetContext);
 
     const pets = ctx.pets;
-    console.log(pets)
     return (
         <div className="container">
             <h3 className={styles['breeds-wrapper-title']}>Available Pets</h3>

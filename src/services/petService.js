@@ -28,7 +28,6 @@ export async function updatePet(pet) {
     // return await updateDoc(petRef, {
     //     ...pet
     // });
-
     await setDoc(doc(db, "pets", pet.id), {
         ...pet
     });

@@ -55,11 +55,13 @@ export const PetContextProvider = (props) => {
     };
 
     const updateCurrentPet = async (pet) => {
+        console.log(pet)
         const result = await updatePet(pet)
         const index = pets.findIndex((p) => p.id === result.id)
 
         const updatedPets = [...pets]
         updatedPets[index] = { ...result, id: pet.id }
+
 
         setPets(updatedPets)
     }

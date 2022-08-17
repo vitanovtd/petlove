@@ -1,44 +1,38 @@
 .card-grid-wrapper {
-    margin-bottom: 9.6rem;
-  }
+  margin-bottom: 9.6rem;
+}
 
 .breeds-left {
-    max-height: 80%;
+  height: 30rem;
+  width: 40rem;
 }
 
-.wthree-almub {
-    background-size: cover;
-    min-height: 23.4rem;
-    -webkit-transition: all 3s;
-    -moz-transition: all 3s;
-    -o-transition: all 3s;
-    transition: all 3s;
-    display: block;
-}
 
-.card-image {
-    width: 60%;
+.breeds-left img {
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .back-color-blue {
-    background-color: #1a75bc;
-  }
-  
-
+  background-color: #1a75bc;
+}
 
 .card-btn {
-    font-size: 1.8rem;
-    padding: 1rem 5rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    width: 15rem;
-    border-radius: 1rem;
-    font-weight: 600;
-    border: none;
-    color: #fff;
-    background-color: #68b403;
-    transition: all 0.3s;
-  }
+  font-size: 1.8rem;
+  padding: 1rem 5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  width: 15rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  border: none;
+  color: #fff;
+  background-color: #68b403;
+  transition: all 0.3s;
+}
 
 .card-btn:hover,
 .card-btn:active {
@@ -46,28 +40,27 @@
 }
 
 .breeds-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .back-color-blue {
-    background-color: #1a75bc;
-  }
-  
-  .back-color-yellow {
-    background-color: #fed201;
-  }
+  background-color: #1a75bc;
+}
+
+.back-color-yellow {
+  background-color: #fed201;
+}
 
 .card-title {
-    font-size: 3.5rem;
-    padding: 1rem;
-  }
-  
-  .card-paragraph {
-    font-size: 1.8rem;
-    line-height: 1.4;
-    padding: 0 1rem;
-  }
+  font-size: 3.5rem;
+  padding: 1rem;
+}
+
+.card-paragraph {
+  font-size: 1.8rem;
+  line-height: 1.4;
+  padding: 0 1rem;
+}

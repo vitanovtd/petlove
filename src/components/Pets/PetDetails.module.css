@@ -1,18 +1,77 @@
-.card-btn {
-    font-size: 1.8rem;
-    padding: 1rem 5rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    width: 15rem;
-    border-radius: 1rem;
-    font-weight: 600;
-    border: none;
-    color: #fff;
-    background-color: #68b403;
-    transition: all 0.3s;
-  }
+.details{
+  display: flex;
+}
 
-.card-btn:hover,
-.card-btn:active {
+.img-holder img{
+  flex-basis: 60%;
+  height: 50rem;
+  border-radius: 7px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
+}
+
+.description {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;  
+  align-items: center;
+}
+
+.card-title {
+  color: #000;  
+  font-size: 5.2rem;
+  padding: 1rem 2rem;
+  letter-spacing: -1.5px;
+  margin-bottom: 3rem;
+}
+
+.desc-paragraph {
+  line-height: 1.5;
+  font-size: 1.8rem;
+  color: #555;
+}
+
+.btn-holder {
+  display: flex;
+  align-items: center;
+  margin-top: 10rem;
+  gap: 2rem;
+}
+
+.desc-btn {
+  font-size: 1.8rem;
+  padding: 1rem 5rem;
+  margin-top: 5rem;
+  cursor: pointer;
+  width: 15rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  border: none;
+  color: #fff;
+  background-color: #68b403;
+  transition: all 0.3s;
+}
+
+.desc-btn-red{
+  font-size: 1.8rem;
+  padding: 1rem 5rem;
+  margin-top: 5rem;
+  cursor: pointer;
+  width: 15rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  border: none;
+  color: #fff;
+  background-color: #b61f33;
+  transition: all 0.3s;
+}
+
+.desc-btn:hover,
+.desc-btn:active {
   background-color: #539002;
+}
+
+.desc-btn-red:hover,
+.desc-btn-red:active {
+  background-color: #d31730;
 }

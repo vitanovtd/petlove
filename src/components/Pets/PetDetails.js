@@ -12,10 +12,12 @@ const PetDetails = () => {
     const { petId } = useParams();
 
     const [pet, setPet] = useState({});
+    const [isLiked, setIsLiked] = useState(null);
 
     const [confirmDelete, setConfirmDelete] = useState(false);
 
-    const [isLiked, setIsLiked] = useState(null);
+
+
 
 
     const navigate = useNavigate();
@@ -29,28 +31,66 @@ const PetDetails = () => {
 
     const isOwner = pet.ownerId === currentUser?.uid;
 
-    const [liked, setLikes] = useState(null);
+
 
     useEffect(() => {
         getOne(petId).then((pet) => {
-            setPet(pet);
+            setPet({ id: petId, ...pet });
 
-
+            if (!pet.likedBy || !pet.likedBy.includes(currentUser.uid)) {
+                setIsLiked(false);
+            } else {
+                setIsLiked(true);
+            }
 
         })
 
-    }, [ctx, petId, currentUser]);
+    }, [ctx.pets, petId, isLiked, currentUser]);
 
 
-    console.log(ctx);
+
 
     const editHandler = (e) => {
         e.preventDefault();
 
         navigate(`/pets/${petId}/edit`)
     }
+    const likeHandler = async (e) => {
+        e.preventDefault();
 
-    console.log(pet.id)
+
+
+        if (!isLiked) {
+            setIsLiked(false);
+            pet.likedBy.push(currentUser.uid)
+            ctx.updateCurrentPet(
+                Object.assign(pet, pet.likedBy))
+        } else {
+            setIsLiked(true);
+
+        }
+    }
+
+    // id: petId,
+    // name,
+    // bread,
+    // imageUrl,
+    // description,
+    // ownerId: currentUser.uid
+
+    // const updateCurrentPet = async (pet) => {
+    //     const result = await updatePet(pet)
+    //     const index = pets.findIndex((p) => p.id === result.id)
+
+    //     const updatedPets = [...pets]
+    //     updatedPets[index] = { ...result, id: pet.id }
+
+    //     setPets(updatedPets)
+    // }
+
+    // const removePet = (petId) => {
+    //     setPets((prevState) => prevState.filter((pet) => pet.id !== petId));
+    // };
 
     const deleteHandler = (e) => {
         e.preventDefault();
@@ -64,30 +104,34 @@ const PetDetails = () => {
 
 
 
-    console.log(isOwner);
     return (
 
-
-        <div className="card-wrapper grid grid--2-cols no-gap">
-            <div className={styles['breeds-left']}>
-                <div className={styles['wthree-almub']}></div>
-                <img src={pet.imageUrl} alt={pet.name} />
-            </div>
-            <div className={styles['breads-right']}>
-                <h4 className={styles['card-title']}>{pet.name}</h4>
-                <p className={styles['card-paragraph']}>
-                    {pet.description}
-                </p>
-                {currentUser && !isOwner && (
-                    <button className={styles['card-btn']} >{isLiked ? 'Liked' : 'Like'}</button>
-                )
-                }
-                {isOwner &&
-                    (<button className={styles['card-btn']} onClick={editHandler}>Edit </button>)
-                }
-                {isOwner &&
-                    (<button className={styles['card-btn']} onClick={deleteHandler}>Delete</button>)
-                }
+        <div className="container">
+            <div className={styles["details"]}>
+                <div className={styles["img-holder"]}>
+                    <img src={pet.imageUrl} alt={pet.name} />
+                </div>
+                <div className={styles["description"]}>
+                    <h4 className={styles["card-title"]}>{pet.name}</h4>
+                    <p className={styles["desc-paragraph"]}>{pet.description}</p>
+                    <div className={styles["btn-holder"]}>
+                        {currentUser && !isOwner && (
+                            <button className={styles["desc-btn"]} onClick={likeHandler}>
+                                {isLiked ? "Liked" : "Like"}
+                            </button>
+                        )}
+                        {isOwner && (
+                            <button className={styles["desc-btn"]} onClick={editHandler}>
+                                Edit{" "}
+                            </button>
+                        )}
+                        {isOwner && (
+                            <button className={styles["desc-btn-red"]} onClick={deleteHandler}>
+                                Delete
+                            </button>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
