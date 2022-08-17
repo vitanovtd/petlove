@@ -52,7 +52,7 @@ const AddNewPet = () => {
             <div className={styles.almub}>
                 <div className={styles['wrapper-form']}>
                     <div className={styles['space']}></div>
-                    <form className='grid grid--2-cols' onSubmit={handleAddPet}>
+                    <form className='grid grid--2-cols'>
                         <div className={styles['field-form']}>
                             <label className={styles['label-field']} htmlFor="name">name</label>
                             <input className={styles['input-field']} type="text" name="name" onChange={e => setName(e.target.value)} />
@@ -66,9 +66,9 @@ const AddNewPet = () => {
                             <input className={styles['input-field']} type="textarea" name="description" onChange={e => setDescription(e.target.value)} />
                         </div>
                     </form>
-                    <div class={styles['btn-form-container']}>
-                        <button className={styles['submit-button']} type="submit">Add</button>
-                        <p class="p-auth-info">Have already an account? <a class="link-auth" href="#">Login</a></p>
+                    <div className={styles['btn-form-container']}>
+                        <button className={styles['submit-button']} onClick={handleAddPet}>Add</button>
+                        <p className="p-auth-info">Have already an account? <a className="link-auth" href="#">Login</a></p>
                     </div>
                 </div>
             </div>

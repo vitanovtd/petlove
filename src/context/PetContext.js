@@ -35,10 +35,21 @@ export const PetContextProvider = (props) => {
 
         const refPet = await addPet(pet);
         const docSnap = await getDoc(refPet);
+
         console.log(refPet);
+        console.log(docSnap.id);
+        console.log(docSnap);
+        console.log(docSnap.data());
         setPets((prevState) =>
             prevState.concat({
-                ...docSnap.data()
+                // ...docSnap.data()
+                id: docSnap.id,
+                name: docSnap.data().name,
+                bread: docSnap.data().bread,
+                imageUrl: docSnap.data().imageUrl,
+                description: docSnap.data().description,
+                ownerId: docSnap.data().ownerId,
+                likedBy: docSnap.data().likedBy,
             })
         );
     };

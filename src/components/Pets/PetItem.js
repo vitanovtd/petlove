@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from '../Pets/PetItem.module.css';
 
 const PetItem = ({ pet, index }) => {
-
+    console.log(pet);
     return (
         <div className='grid grid--2-cols no-gap card-grid-wrapper'>
             <div className={styles['breeds-left']}>
