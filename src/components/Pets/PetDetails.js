@@ -21,11 +21,7 @@ const PetDetails = () => {
 
     const navigate = useNavigate();
 
-    // const pets = ctx.pets;
 
-    // // const filteredPet = pets.find((pet) => pet.id === petId);
-
-    // // console.log(filteredPet);
     console.log(pet)
     console.log(isLiked)
     console.log(pet.likedBy)
@@ -87,20 +83,6 @@ const PetDetails = () => {
         }
     }
 
-
-    // const updateCurrentPet = async (pet) => {
-    //     const result = await updatePet(pet)
-    //     const index = pets.findIndex((p) => p.id === result.id)
-
-    //     const updatedPets = [...pets]
-    //     updatedPets[index] = { ...result, id: pet.id }
-
-    //     setPets(updatedPets)
-    // }
-
-    // const removePet = (petId) => {
-    //     setPets((prevState) => prevState.filter((pet) => pet.id !== petId));
-    // };
 
     const deleteHandler = (e) => {
         e.preventDefault();

@@ -14,7 +14,7 @@ import EditPet from './components/Pets/EditPet';
 import AvailablePets from './components/Pets/AvailablePets';
 import PetDetails from './components/Pets/PetDetails';
 import Profile from './components/Profile';
-
+import Footer from './components/Footer';
 
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
 
 
       </Routes>
-
+      <Footer />
     </div>
   );
 }
