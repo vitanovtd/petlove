@@ -8,6 +8,9 @@ import { deletePet, getOne } from '../../services/petService';
 
 
 const PetDetails = () => {
+    const { currentUser } = useContext(AuthContext);
+    const ctx = useContext(PetContext);
+
 
     const { petId } = useParams();
 
@@ -16,26 +19,30 @@ const PetDetails = () => {
 
     const [confirmDelete, setConfirmDelete] = useState(false);
 
-
-
-
-
     const navigate = useNavigate();
 
-    // const info = getOne(petId)
-    // console.log(info)
+    // const pets = ctx.pets;
 
-    const ctx = useContext(PetContext);
+    // // const filteredPet = pets.find((pet) => pet.id === petId);
 
-    const { currentUser } = useContext(AuthContext);
+    // // console.log(filteredPet);
+
+
+
 
     const isOwner = pet.ownerId === currentUser?.uid;
 
 
 
     useEffect(() => {
+
         getOne(petId).then((pet) => {
-            setPet({ id: petId, ...pet });
+
+            setPet({ id: pet.id, ...pet.data() });
+
+            console.log(pet)
+            console.log(pet.id)
+            console.log(pet.data())
 
             if (!pet.likedBy || !pet.likedBy.includes(currentUser.uid)) {
                 setIsLiked(false);
@@ -43,9 +50,15 @@ const PetDetails = () => {
                 setIsLiked(true);
             }
 
+
+
+        }).catch((error) => {
+            console.log(error)
+            navigate('/pets')
         })
 
-    }, [ctx.pets, petId, isLiked, currentUser]);
+
+    }, [ctx, petId, isLiked, currentUser]);
 
 
 
@@ -61,12 +74,13 @@ const PetDetails = () => {
 
 
         if (!isLiked) {
-            setIsLiked(false);
-            pet.likedBy.push(currentUser.uid)
-            ctx.updateCurrentPet(
-                Object.assign(pet, pet.likedBy))
-        } else {
             setIsLiked(true);
+            const updatedLikedPet = pet.likedBy.push(currentUser.uid)
+
+            ctx.updateCurrentPet(
+                Object.assign(updatedLikedPet, updatedLikedPet.likedBy))
+        } else {
+            setIsLiked(false);
 
         }
     }

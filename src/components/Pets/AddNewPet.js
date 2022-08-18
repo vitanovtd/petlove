@@ -38,7 +38,7 @@ const AddNewPet = () => {
         });
 
 
-        navigate('/');
+        navigate('/pets');
     }
 
 

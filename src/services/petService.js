@@ -11,9 +11,17 @@ export async function addPet(data) {
 
 
 export async function getOne(petId) {
+
     const docRef = (doc(db, "pets", petId));
     const docSnap = await getDoc(docRef);
-    return docSnap.data();
+    if (docSnap.exists()) {
+        return docSnap;
+    } else {
+        return console.log('No such document')
+    }
+
+
+
     // return docSnap.data();
 }
 

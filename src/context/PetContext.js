@@ -17,6 +17,7 @@ export const PetContextProvider = (props) => {
     useEffect(() => {
         getAll().then((pets) => {
             const currentPets = [];
+
             pets.forEach((p) => {
                 const pet = {
                     id: p.id,
@@ -40,6 +41,7 @@ export const PetContextProvider = (props) => {
         console.log(docSnap.id);
         console.log(docSnap);
         console.log(docSnap.data());
+
         setPets((prevState) =>
             prevState.concat({
                 // ...docSnap.data()

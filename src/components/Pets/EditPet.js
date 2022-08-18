@@ -6,12 +6,20 @@ import { getAll } from '../../services/petService'
 import { PetContext } from '../../context/PetContext'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 
 const EditPet = () => {
     const ctx = useContext(PetContext);
     const { currentUser } = useContext(AuthContext);
+    const pets = ctx.pets;
+
+    const location = useLocation()
+    const navigate = useNavigate();
+
+
+
+
 
 
     const [name, setName] = useState("");
@@ -22,6 +30,10 @@ const EditPet = () => {
     const { petId } = useParams()
     console.log(petId)
     console.log(ctx.pets);
+
+    // const correctPet = pets.find((pet) => pet.id === petId);
+
+
     const handlerEditPet = async (e) => {
         e.preventDefault();
 
