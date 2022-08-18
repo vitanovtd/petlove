@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import EditPet from './components/Pets/EditPet';
 import AvailablePets from './components/Pets/AvailablePets';
 import PetDetails from './components/Pets/PetDetails';
+import Profile from './components/Profile';
 
 
 
@@ -44,7 +45,7 @@ function App() {
 
         <Route path='/pets/:petId/edit' element={<RequireAuth><EditPet /></RequireAuth>} />
 
-
+        <Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>} />
 
         <Route path="/*" element={<Navigate to="/" replace={true} />} />
 

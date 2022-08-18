@@ -46,6 +46,7 @@ const Register = () => {
                 <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
                 <input type="password" placeholder="repeatPassword" />
                 <button type="submit">Login</button>
+                <p className="p-auth-info">Have already an account? <a className="link-auth" href="#">Login</a></p>
                 {error && <span className={styles.spanOne}>Wrong email or password</span>}
             </form>
         </div>

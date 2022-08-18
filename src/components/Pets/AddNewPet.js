@@ -68,7 +68,7 @@ const AddNewPet = () => {
                     </form>
                     <div className={styles['btn-form-container']}>
                         <button className={styles['submit-button']} onClick={handleAddPet}>Add</button>
-                        <p className="p-auth-info">Have already an account? <a className="link-auth" href="#">Login</a></p>
+                        
                     </div>
                 </div>
             </div>

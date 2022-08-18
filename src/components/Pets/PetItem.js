@@ -6,6 +6,12 @@ import styles from '../Pets/PetItem.module.css';
 
 const PetItem = ({ pet, index }) => {
 
+
+    // const moreHanlder = (e) => {
+    //     e.preventDefault();
+    //     navigate(`/pets/${pet.id}`)
+    // }
+
     return (
         <div className="grid grid--2-cols no-gap card-grid-wrapper">
             <div className={styles["breeds-left"]}>
@@ -26,6 +32,11 @@ const PetItem = ({ pet, index }) => {
                 <Link to={`/pets/${pet.id}`} className={styles["card-btn"]}>
                     More
                 </Link>
+
+                {/* <button className={styles["card-btn"]} onClick={moreHanlder}>
+                    More
+                </button> */}
+
             </div>
         </div>
     );
