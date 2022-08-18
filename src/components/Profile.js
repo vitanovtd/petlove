@@ -22,25 +22,29 @@ const Profile = () => {
 
     return (
         <Fragment>
-            <section>Hello {currentUser.email}</section>
-            <div className="container">
-                <h3 className={styles['breeds-wrapper-title']}>Listed Pets:</h3>
-                <div className="grid grid--2-cols card-grid-wrapper">
-                    {petsList.length > 0
-                        ? petsList.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)
-                        : <h2>No pets listed</h2>
-                    }
+            <section className={styles['sectionProfile']}>Hello {currentUser.email}
 
-                </div>
-                <h3 className={styles['breeds-wrapper-title']}>Liked Pets:</h3>
-                <div className="grid grid--2-cols card-grid-wrapper">
-                    {likedPets.length > 0
-                        ? likedPets.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)
-                        : <h2 bold>You didn't like any pets</h2>
-                    }
+                <div className="container">
+                    <h3 className={styles['breeds-wrapper-title']}>You listed {petsList.length} Pets </h3>
+                    <div className="grid grid--2-cols card-grid-wrapper">
 
+                        {petsList.length > 0
+                            ? petsList.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)
+                            : <h2>No pets listed</h2>
+                        }
+
+                    </div>
+                    <h3 className={styles['breeds-wrapper-title']}>You liked {likedPets.length} Pets </h3>
+                    <div className="grid grid--2-cols card-grid-wrapper">
+
+                        {likedPets.length > 0
+                            ? likedPets.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)
+                            : <h2>You didn't like any pets</h2>
+                        }
+
+                    </div>
                 </div>
-            </div>
+            </section>
         </Fragment>
 
     )
