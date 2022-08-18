@@ -38,11 +38,13 @@ const Header = () => {
                 {/* header */}
                 <div className="container">
                     <header className={styles.header}>
-                        <img
-                            className={styles.logo}
-                            src="../assets/img/logo/pet-rescue-logo.svg"
-                            alt="Pet Rescue"
-                        />
+                        <Link to="/">
+                            <img
+                                className={styles.logo}
+                                src="../assets/img/logo/pet-rescue-logo.svg"
+                                alt="Pet Rescue"
+                            />
+                        </Link>
                         <nav className={styles['main-nav-list']}>
                             <ul className={styles['main-nav-list']}>
                                 {!currentUser && (

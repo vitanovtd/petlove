@@ -1,9 +1,34 @@
+.about-us {
+  margin-bottom: 5.6rem;
+}
+
+.left-col {
+  /* bac colr */
+  background-color: #fed201;
+  padding: 1rem 2rem;
+}
+
+.right-col {
+  background: url(../../public/assets/img/about.jpg) no-repeat center;
+  background-size: cover;
+  min-height: 42.8rem;
+}
+
+.article-paragraph {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+
+
+
 .adopt-flex {
     background: #1a75bc;
     display: flex;
     align-items: center;
     max-height: 50.6rem;
     margin-bottom: 9.6rem;
+    margin-top: 5rem;
   }
   
   .img-holder {
@@ -16,3 +41,16 @@
     top: 3rem;
     height: 25rem;
   }
+
+
+  .breeds-wrapper-title {
+    font-size: 4.6rem;
+    text-transform: capitalize;
+    color: #000;
+    margin-bottom: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+  }
+  
+  

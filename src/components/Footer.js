@@ -10,7 +10,6 @@ const Footer = () => {
                 </div>
                 <p className={styles['footerC']}>
                     © Pet Love. All Rights Reserved | Designed by Tisho
-
                 </p>
             </div>
         </div>
