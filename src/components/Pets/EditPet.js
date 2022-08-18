@@ -1,12 +1,13 @@
 import styles from '../Pets/AddNewPet.module.css'
 import { collection, doc, setDoc, addDoc } from "firebase/firestore";
 import { db } from '../../firebase';
-import { useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { getAll } from '../../services/petService'
 import { PetContext } from '../../context/PetContext'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+import AvailablePets from './AvailablePets';
 
 
 const EditPet = () => {
@@ -17,6 +18,7 @@ const EditPet = () => {
     const location = useLocation()
     const navigate = useNavigate();
 
+    console.log(location)
 
 
 
@@ -31,11 +33,16 @@ const EditPet = () => {
     console.log(petId)
     console.log(ctx.pets);
 
-    // const correctPet = pets.find((pet) => pet.id === petId);
+    const correctPet = pets.find((pet) => pet.id === petId);
+
+
 
 
     const handlerEditPet = async (e) => {
         e.preventDefault();
+        if (!correctPet) {
+            return;
+        }
 
         // UPDATE ONE
         ctx.updateCurrentPet({
@@ -53,12 +60,9 @@ const EditPet = () => {
 
 
     return (
-
-
-
-
         <div className="container">
-            <h1>Edit Pet</h1>
+
+            < h1 > Edit Pet</h1 >
             <div className={styles.almub}>
                 <form onSubmit={handlerEditPet}>
                     <label htmlFor="name">name</label>
@@ -73,6 +77,7 @@ const EditPet = () => {
                     <button type="submit">Edit</button>
                 </form>
             </div>
+
         </div>
     );
 }

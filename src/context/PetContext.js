@@ -8,6 +8,8 @@ export const PetContext = createContext({
     addNewPet: (pet) => { },
     updateCurrentPet: (pet) => { },
     removePet: (petId) => { },
+    likePet: (pet, userId) => { },
+    unLikePet: (pet, userId) => { },
 })
 
 export const PetContextProvider = (props) => {
@@ -37,11 +39,6 @@ export const PetContextProvider = (props) => {
         const refPet = await addPet(pet);
         const docSnap = await getDoc(refPet);
 
-        console.log(refPet);
-        console.log(docSnap.id);
-        console.log(docSnap);
-        console.log(docSnap.data());
-
         setPets((prevState) =>
             prevState.concat({
                 // ...docSnap.data()
@@ -55,6 +52,37 @@ export const PetContextProvider = (props) => {
             })
         );
     };
+
+    const likePet = async (pet, userId) => {
+
+        // const index = pets.findIndex((p) => p.id === pet.id)
+        // const newRef = [...pets];
+
+        let likedBy = pet.likedBy || [];
+        const updatedLikePet = { ...pet, likedBy: [...likedBy, userId] }
+
+        await updateCurrentPet(Object.assign(updatedLikePet))
+
+    }
+
+    const unLikePet = async (pet, userId) => {
+        const index = pets.findIndex((p) => p.id === pet.id);
+        const newRef = [...pets];
+
+        const likedIndex = pet.likedBy.findIndex((id) => id === userId);
+
+        let likedBy = [...pet.likedBy];
+
+        likedBy = [
+            ...likedBy.slice(0, likedIndex),
+            ...likedBy.slice(likedIndex + 1),
+        ];
+
+        const updatedPet = { ...pet, likedBy: likedBy };
+        console.log(updatedPet)
+        // console.log(Object.assign(updatedPet))
+        await updateCurrentPet(updatedPet);
+    }
 
     const updateCurrentPet = async (pet) => {
         console.log(pet)
@@ -81,6 +109,8 @@ export const PetContextProvider = (props) => {
                 addNewPet,
                 updateCurrentPet,
                 removePet,
+                likePet,
+                unLikePet,
             }}>
             {props.children}
         </PetContext.Provider>

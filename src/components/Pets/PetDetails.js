@@ -26,27 +26,25 @@ const PetDetails = () => {
     // // const filteredPet = pets.find((pet) => pet.id === petId);
 
     // // console.log(filteredPet);
-
-
-
-
+    console.log(pet)
+    console.log(isLiked)
+    console.log(pet.likedBy)
     const isOwner = pet.ownerId === currentUser?.uid;
-
-
-
     useEffect(() => {
 
         getOne(petId).then((pet) => {
 
             setPet({ id: pet.id, ...pet.data() });
 
-            console.log(pet)
-            console.log(pet.id)
-            console.log(pet.data())
 
-            if (!pet.likedBy || !pet.likedBy.includes(currentUser.uid)) {
+            console.log(pet)
+
+
+            if (!pet.data().likedBy.includes(currentUser.uid)) {
+
                 setIsLiked(false);
             } else {
+                console.log('DARI')
                 setIsLiked(true);
             }
 
@@ -58,9 +56,7 @@ const PetDetails = () => {
         })
 
 
-    }, [ctx, petId, isLiked, currentUser]);
-
-
+    }, [ctx, petId, isLiked, currentUser.uid]);
 
 
     const editHandler = (e) => {
@@ -69,28 +65,28 @@ const PetDetails = () => {
         navigate(`/pets/${petId}/edit`)
     }
     const likeHandler = async (e) => {
+        console.log(pet)
+        console.log(pet.id)
         e.preventDefault();
 
 
 
-        if (!isLiked) {
-            setIsLiked(true);
-            const updatedLikedPet = pet.likedBy.push(currentUser.uid)
+        if (isLiked) {
 
-            ctx.updateCurrentPet(
-                Object.assign(updatedLikedPet, updatedLikedPet.likedBy))
-        } else {
             setIsLiked(false);
+            ctx.unLikePet(pet, currentUser.uid);
+            //     const updatedLikedPet = pet.likedBy.push(currentUser.uid)
+
+            //     ctx.updateCurrentPet(
+            //         Object.assign(updatedLikedPet, updatedLikedPet.likedBy))
+        } else {
+
+            setIsLiked(true);
+            ctx.likePet(pet, currentUser.uid);
 
         }
     }
 
-    // id: petId,
-    // name,
-    // bread,
-    // imageUrl,
-    // description,
-    // ownerId: currentUser.uid
 
     // const updateCurrentPet = async (pet) => {
     //     const result = await updatePet(pet)
