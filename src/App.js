@@ -22,9 +22,14 @@ function App() {
   const { currentUser } = useContext(AuthContext);
 
 
-  const RequireAuth = ({ children }) => {
+  const PrivateRoute = ({ children }) => {
     console.log(children);
     return currentUser ? (children) : <Navigate to="/login" />
+  }
+
+  const PublicRoute = ({ children }) => {
+    console.log(children);
+    return !currentUser ? (children) : <Navigate to="/" />
   }
 
 
@@ -33,19 +38,21 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+
+        <Route path='/login' element={<PublicRoute> <Login /> </PublicRoute>} />
+
+        <Route path='/register' element={<PublicRoute> <Register /></PublicRoute>} />
 
 
 
-        <Route path='/pets/add' element={<RequireAuth><AddNewPet /></RequireAuth>} />
+        <Route path='/pets/add' element={<PrivateRoute><AddNewPet /></PrivateRoute>} />
 
         <Route path='/pets' element={<AvailablePets></AvailablePets>} />
         <Route path='/pets/:petId' element={<PetDetails />} />
 
-        <Route path='/pets/:petId/edit' element={<RequireAuth><EditPet /></RequireAuth>} />
+        <Route path='/pets/:petId/edit' element={<PrivateRoute><EditPet /></PrivateRoute>} />
 
-        <Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>} />
 
         <Route path="/*" element={<Navigate to="/" replace={true} />} />
 
