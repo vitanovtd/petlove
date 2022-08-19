@@ -5,24 +5,64 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import InputLogin from '../components/InputLogin'
+
 
 
 const Login = () => {
+    const inputs = [
+        {
+            id: 1,
+            name: "email",
+            type: "email",
+            placeholder: "email",
+            errorMessage: "It should be a valid email adress",
+            label: "email",
+            required: true,
+        },
+        {
+            id: 2,
+            name: "password",
+            label: "password",
+            type: "password",
+            placeholder: "password",
+            errorMessage: "Minimum six characters, at least one letter and one numbe",
+            // pattern: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$",
+            required: true,
+        }
+    ]
+
     const [error, setError] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+
+    const [focused, setFocused] = useState(false);
+
+
+
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+
+    const [values, setValues] = useState({
+        email: "",
+        password: "",
+    })
+
 
 
     const navigate = useNavigate();
 
     const { dispatch } = useContext(AuthContext);
 
-
+    const onChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value });
+    }
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        signInWithEmailAndPassword(auth, email, password)
+
+
+
+        signInWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
@@ -40,17 +80,36 @@ const Login = () => {
 
 
 
+    {/* <label>{inputs.label}</label>
+        <input
+            {...inputs} onChange={onChange} onBlur={handleFocus}
+        />
+
+
+        {error && <span className={styles.spanOne}>Wrong email or password</span>} */}
+
     return (
-        <div className={styles.login}>
-            <form className={styles.formOne} onSubmit={handleLogin}>
-                <input type="email" placeholder="email" onChange={e => setEmail(e.target.value)} />
-                <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
-                <button type="submit">Login</button>
-                {error && <span className={styles.spanOne}>Wrong email or password</span>}
-            </form>
+        <div className="container">
+            <div className={styles.login}>
+                <form className={styles.formOne} onSubmit={handleLogin}>
+
+
+                    {inputs.map((input) => (
+                        <InputLogin
+                            key={input.id}
+                            {...input}
+                            value={values[input.name]}
+                            onChange={onChange}
+                        />
+                    ))}
+
+                    <button>Submit</button>
+                </form>
+            </div>
         </div>
     )
 }
 
+// value={values[inputs.name]}
 
 export default Login;

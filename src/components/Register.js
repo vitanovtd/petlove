@@ -1,10 +1,14 @@
 import { useContext, useState } from 'react';
 
-import styles from './Login.module.css'
+import styles from './Register.module.css'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+
+
+
+
 
 
 const Register = () => {
@@ -27,7 +31,7 @@ const Register = () => {
                 // Signed in 
                 const user = userCredential.user;
                 dispatch({ type: "REGISTER", payload: user })
-                console.log(user);
+
                 navigate('/');
                 // ...
             })
@@ -40,13 +44,13 @@ const Register = () => {
 
 
     return (
-        <div className={styles.login}>
+        <div className={styles.register}>
             <form className={styles.formOne} onSubmit={handleLogin}>
                 <input type="email" placeholder="email" onChange={e => setEmail(e.target.value)} />
                 <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
                 <input type="password" placeholder="repeatPassword" />
                 <button type="submit">Login</button>
-                <p className="p-auth-info">Have already an account? <a className="link-auth" href="#">Login</a></p>
+                <p className={styles['p-auth-info']}>Have already an account? <Link className="link-auth" to="/login"> Login</Link> </p>
                 {error && <span className={styles.spanOne}>Wrong email or password</span>}
             </form>
         </div>

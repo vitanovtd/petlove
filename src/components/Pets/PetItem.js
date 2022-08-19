@@ -22,7 +22,7 @@ const PetItem = ({ pet, index }) => {
                 />
             </div>
             <div
-                className={`${styles["breeds-right"]} ${index % 2 != 0
+                className={`${styles["breeds-right"]} ${index % 2 !== 0
                     ? styles["back-color-blue"]
                     : styles["back-color-yellow"]
                     }`}
