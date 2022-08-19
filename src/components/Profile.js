@@ -41,7 +41,7 @@ const Profile = () => {
 
                     {likedPets.length > 0
                         ? likedPets.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)
-                        : <h2>You didn't like any pets</h2>
+                        : <h2></h2>
                     }
 
                 </div>

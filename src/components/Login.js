@@ -15,18 +15,18 @@ const Login = () => {
             id: 1,
             name: "email",
             type: "email",
-            placeholder: "email",
+            placeholder: "Email",
             errorMessage: "It should be a valid email adress",
-            label: "email",
+            label: "Email",
             required: true,
         },
         {
             id: 2,
             name: "password",
-            label: "password",
+            label: "Password",
             type: "password",
-            placeholder: "password",
-            errorMessage: "Minimum six characters, at least one letter and one numbe",
+            placeholder: "Password",
+            errorMessage: "Minimum six characters, at least one letter and one number",
             // pattern: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$",
             required: true,
         }
@@ -102,8 +102,9 @@ const Login = () => {
                             onChange={onChange}
                         />
                     ))}
-
-                    <button>Submit</button>
+                    <div className={styles.divBtn}>
+                        <button className={styles.btnlogin}>Submit</button>
+                    </div>
                 </form>
             </div>
         </div>

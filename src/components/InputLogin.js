@@ -11,7 +11,7 @@ const InputLogin = (props) => {
     };
 
     return (
-        <div className="formInput">
+        <div className={styles['formInput']}>
             <label className={styles['label-field']}>{label}</label>
             <input className={styles['input-field']}
                 {...inputProps}

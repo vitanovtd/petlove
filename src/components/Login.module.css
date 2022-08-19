@@ -1,21 +1,56 @@
-.login{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5rem;
-    width: 50rem;
-    height: 50rem;
-    margin-bottom: 12.6rem;
-}
-
-.formOne {
-    display: flex;
-    flex-direction: column;
-
-} 
-
 /* .spanOne {
     font-size: 12px;
     color: red;
 }
  */
+
+
+
+ .login {
+    margin: auto;
+    padding: 10rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.4rem;
+    font-weight: 400;
+    width: 120rem;
+    height: auto;
+    margin-bottom: 16.6rem;
+    background: url(../../public/assets/img/slider-bg.jpg) no-repeat center 0px;
+  }
+  
+  .formOne {
+    width: 50rem;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 9px;
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.08);
+  }
+  
+  .divBtn {
+    text-align: center;
+  }
+  
+  .btnlogin {
+    padding: 0.6rem 2.4rem;
+    margin-bottom: 2.4rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    width: 17.3rem;
+    border-radius: 9px;
+    border: none;
+    color: #fff;
+    background-color: #68b403;
+  
+    transition: all 0.5s;
+  }
+  
+  .btnlogin:hover,
+  .btnlogin:active {
+    cursor: pointer;
+    opacity: 70%;
+  }
