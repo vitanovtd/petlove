@@ -33,7 +33,7 @@ const PetDetails = () => {
             setPet({ id: pet.id, ...pet.data() });
 
 
-            if (!pet.data().likedBy.includes(currentUser.uid)) {
+            if (!pet.data().likedBy.includes(currentUser?.uid)) {
 
                 setIsLiked(false);
             } else {
@@ -49,7 +49,7 @@ const PetDetails = () => {
         })
 
 
-    }, [ctx, petId, isLiked, currentUser.uid]);
+    }, [ctx, petId, isLiked, currentUser?.uid]);
 
 
     const editHandler = (e) => {

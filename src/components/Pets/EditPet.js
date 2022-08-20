@@ -19,6 +19,7 @@ const EditPet = () => {
     const location = useLocation()
     const pet = location.state;
     const navigate = useNavigate();
+    console.log(location);
 
     const inputs = [
         {
@@ -100,7 +101,7 @@ const EditPet = () => {
             ownerId: currentUser.uid
         });
 
-        // navigate('/profile')
+
         navigate('/profile')
     }
 
