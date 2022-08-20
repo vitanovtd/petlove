@@ -7,6 +7,7 @@ const InputLogin = (props) => {
     const { label, errorMessage, onChange, id, ...inputProps } = props;
 
     const handleFocus = (e) => {
+
         setFocused(true);
     };
 
@@ -17,12 +18,12 @@ const InputLogin = (props) => {
                 {...inputProps}
                 onChange={onChange}
                 onBlur={handleFocus}
-                // onFocus={() =>
-                //     inputProps.name === "confirmPassword" && setFocused(true)
-                // }
+                onFocus={() =>
+                    inputProps.name === "repeatPassword" && setFocused(true)
+                }
                 focused={focused.toString()}
             />
-            <span className={styles['label']}>{errorMessage}</span>
+            <span>{errorMessage}</span>
         </div>
     );
 };

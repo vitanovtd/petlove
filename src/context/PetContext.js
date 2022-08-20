@@ -35,7 +35,7 @@ export const PetContextProvider = (props) => {
 
 
     const addNewPet = async (pet) => {
-
+        
         const refPet = await addPet(pet);
         const docSnap = await getDoc(refPet);
 

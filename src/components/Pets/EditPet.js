@@ -30,11 +30,12 @@ const EditPet = () => {
     const [description, setDescription] = useState("");
 
     const { petId } = useParams()
-    console.log(petId)
-    console.log(ctx.pets);
+
 
     const correctPet = pets.find((pet) => pet.id === petId);
-
+    // if (currentUser.iud !== correctPet.ownerId) {
+    //     navigate('/pets');
+    // }
 
 
 
@@ -51,6 +52,7 @@ const EditPet = () => {
             bread,
             imageUrl,
             description,
+            likedBy: correctPet.likedBy,
             ownerId: currentUser.uid
         });
 

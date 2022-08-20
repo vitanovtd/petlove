@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { Fragment, useContext, useState } from 'react';
 
 import styles from './Login.module.css'
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -34,7 +34,6 @@ const Login = () => {
 
     const [error, setError] = useState(false);
 
-    const [focused, setFocused] = useState(false);
 
 
 
@@ -89,6 +88,7 @@ const Login = () => {
         {error && <span className={styles.spanOne}>Wrong email or password</span>} */}
 
     return (
+
         <div className="container">
             <div className={styles.login}>
                 <form className={styles.formOne} onSubmit={handleLogin}>
@@ -103,11 +103,15 @@ const Login = () => {
                         />
                     ))}
                     <div className={styles.divBtn}>
-                        <button className={styles.btnlogin}>Submit</button>
+                        <button className={styles.btnlogin}>Login</button>
+
+                        {error && <p className='error-login'>Incorrect Credentials</p>}
                     </div>
                 </form>
             </div>
+
         </div>
+
     )
 }
 

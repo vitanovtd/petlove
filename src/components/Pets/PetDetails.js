@@ -71,15 +71,10 @@ const PetDetails = () => {
 
             setIsLiked(false);
             ctx.unLikePet(pet, currentUser.uid);
-            //     const updatedLikedPet = pet.likedBy.push(currentUser.uid)
-
-            //     ctx.updateCurrentPet(
-            //         Object.assign(updatedLikedPet, updatedLikedPet.likedBy))
         } else {
 
             setIsLiked(true);
             ctx.likePet(pet, currentUser.uid);
-
         }
     }
 

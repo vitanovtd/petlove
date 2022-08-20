@@ -1,61 +1,111 @@
-import { useContext, useState } from 'react';
+import { useContext, useState } from "react";
 
-import styles from './Register.module.css'
+import styles from "./Register.module.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase';
-import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-
-
-
-
-
+import { auth } from "../firebase";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import InputLogin from "../components/InputLogin";
 
 const Register = () => {
-    const [error, setError] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const inputs = [
+        {
+            id: 1,
+            name: "email",
+            type: "email",
+            placeholder: "Email",
+            errorMessage: "It should be a valid email adress",
+            label: "Email",
+            required: true,
+        },
+        {
+            id: 2,
+            name: "password",
+            label: "Password",
+            type: "password",
+            placeholder: "Password",
+            errorMessage:
+                "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+            pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+            required: true,
+        },
+        {
+            id: 3,
+            name: "repeatPassword",
+            label: "Confirm Password",
+            type: "password",
+            placeholder: "Confirm Password",
+            errorMessage: "Password doesn't match",
+            //   pattern: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$",
+            required: true,
+        },
+    ];
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
 
+    const [error, setError] = useState(false);
+
+    const [values, setValues] = useState({
+        email: "",
+        password: "",
+        repeatPassword: ""
+    });
 
     const navigate = useNavigate();
 
     const { dispatch } = useContext(AuthContext);
 
-
+    const onChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value });
+    };
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                dispatch({ type: "REGISTER", payload: user })
+        if (values.password !== values.repeatPassword) {
+            //  TODO needs to add custom validation
+        }
 
-                navigate('/');
+        createUserWithEmailAndPassword(auth, values.email, values.password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                dispatch({ type: "REGISTER", payload: user });
+
+                navigate("/");
                 // ...
             })
             .catch((error) => {
                 setError(true);
             });
-    }
-
-
-
+    };
 
     return (
         <div className={styles.register}>
             <form className={styles.formOne} onSubmit={handleLogin}>
-                <input type="email" placeholder="email" onChange={e => setEmail(e.target.value)} />
-                <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
-                <input type="password" placeholder="repeatPassword" />
-                <button type="submit">Login</button>
-                <p className={styles['p-auth-info']}>Have already an account? <Link className="link-auth" to="/login"> Login</Link> </p>
-                {error && <span className={styles.spanOne}>Wrong email or password</span>}
+                {inputs.map((input) => (
+                    <InputLogin
+                        key={input.id}
+                        {...input}
+                        value={values[input.name]}
+                        onChange={onChange}
+                    />
+                ))}
+                <div className={styles["divBtn"]}>
+                    <button className={styles["btnlogin"]} type="submit">
+                        Register
+                    </button>
+                    <p className={styles["p-auth-info"]}>
+                        Have already an account?{" "}
+                        <Link className="link-auth" to="/login">
+                            {" "}
+                            Login
+                        </Link>{" "}
+                    </p>
+                </div>
             </form>
         </div>
-    )
-}
-
+    );
+};
 
 export default Register;

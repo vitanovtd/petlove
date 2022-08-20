@@ -1,12 +1,4 @@
-/* .spanOne {
-    font-size: 12px;
-    color: red;
-}
- */
-
-
-
- .login {
+.login {
     margin: auto;
     padding: 10rem 0;
     display: flex;
@@ -54,3 +46,17 @@
     cursor: pointer;
     opacity: 70%;
   }
+  
+
+  .error-login {	
+    color: red;	
+    font-size: 1.2rem;	
+  }
+
+
+  /* .spanOne {
+      font-size: 12px;
+      color: red;
+  }
+   */
+  
