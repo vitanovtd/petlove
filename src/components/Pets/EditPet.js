@@ -1,22 +1,26 @@
-import styles from '../Pets/AddNewPet.module.css'
+import styles from "../Pets/EditPet.module.css";
 import { collection, doc, setDoc, addDoc } from "firebase/firestore";
-import { db } from '../../firebase';
-import { Fragment, useEffect, useState } from 'react';
-import { getAll } from '../../services/petService'
-import { PetContext } from '../../context/PetContext'
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
-import AvailablePets from './AvailablePets';
-import InputLogin from '../InputLogin';
-
+import { db } from "../../firebase";
+import { Fragment, useEffect, useState } from "react";
+import { getAll } from "../../services/petService";
+import { PetContext } from "../../context/PetContext";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import {
+    Navigate,
+    useLocation,
+    useNavigate,
+    useParams,
+} from "react-router-dom";
+import AvailablePets from "./AvailablePets";
+import InputLogin from "../InputLogin";
 
 const EditPet = () => {
     const ctx = useContext(PetContext);
     const { currentUser } = useContext(AuthContext);
     const pets = ctx.pets;
 
-    const location = useLocation()
+    const location = useLocation();
     const pet = location.state;
     const navigate = useNavigate();
     console.log(location);
@@ -41,9 +45,11 @@ const EditPet = () => {
         {
             id: 3,
             name: "imageUrl",
-            type: "text",
+            type: "url",
             errorMessage: "Should be a valid URL",
             label: "imageUrl",
+            placeholder: "Image url",
+            pattern: `(https://[^"]*?\)`,
             required: true,
         },
         {
@@ -53,41 +59,41 @@ const EditPet = () => {
             errorMessage: "Should be at least 50 characters",
             label: "description",
             required: true,
-        }
-    ]
+        },
+    ];
 
     const [values, setValues] = useState({
         name: pet.name,
         bread: pet.bread,
         imageUrl: pet.imageUrl,
         description: pet.description,
-    })
+    });
 
-
-
-    const { petId } = useParams()
-
+    const { petId } = useParams();
 
     const correctPet = pets.find((pet) => pet.id === petId);
 
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
-    }
+    };
 
+    const cancelHandler = (e) => {
+        e.preventDefault();
+
+        navigate("/pets");
+    };
 
     const handlerEditPet = async (e) => {
         e.preventDefault();
         if (!correctPet) {
             return;
         }
-        console.log(currentUser.uid + 'before')
-        console.log(correctPet.ownerId + 'before')
+        console.log(currentUser.uid + "before");
+        console.log(correctPet.ownerId + "before");
 
         if (currentUser.uid !== correctPet.ownerId) {
-
-            navigate('/pets');
+            navigate("/pets");
             return;
-
         }
 
         // UPDATE ONE
@@ -98,23 +104,22 @@ const EditPet = () => {
             imageUrl: values.imageUrl,
             description: values.description,
             likedBy: correctPet.likedBy || [],
-            ownerId: currentUser.uid
+            ownerId: currentUser.uid,
         });
 
-
-        navigate('/profile')
-    }
-
-
+        navigate("/profile");
+    };
 
     return (
         <div className="container">
-
-            < h1 > Edit Pet</h1 >
+            <h1> Edit Pet</h1>
             <div className={styles.almub}>
-                <div className={styles['wrapper-form']}>
-                    <div className={styles['space']}></div>
-                    <form className='grid grid--2-cols' onSubmit={handlerEditPet}>
+                <div className={styles["wrapper-form"]}>
+                    <div className={styles["space"]}></div>
+                    <form
+                        className="grid grid--2-cols grid--center--v"
+                        onSubmit={handlerEditPet}
+                    >
                         {inputs.map((input) => (
                             <InputLogin
                                 key={input.id}
@@ -123,18 +128,22 @@ const EditPet = () => {
                                 onChange={onChange}
                             />
                         ))}
-                        <div className={styles['btn-form-container']}>
-                            <button className={styles['submit-button']}>Edit</button>
-
+                        <div className={styles["btn-form-container"]}>
+                            <button
+                                className={styles["cancel-button"]}
+                                onClick={cancelHandler}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                        <div className={styles["btn-form-container"]}>
+                            <button className={styles["submit-button"]}>Edit</button>
                         </div>
                     </form>
-
                 </div>
             </div>
-
         </div>
     );
-}
-
+};
 
 export default EditPet;

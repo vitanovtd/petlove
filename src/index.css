@@ -194,3 +194,9 @@ strong {
 .contrast-color {
     color:#edce08
 }
+
+.loader {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

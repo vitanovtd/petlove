@@ -3,7 +3,7 @@ import { Fragment, useContext, useState } from 'react';
 import styles from './Login.module.css'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import InputLogin from '../components/InputLogin'
 
@@ -76,17 +76,6 @@ const Login = () => {
             });
     }
 
-
-
-
-    {/* <label>{inputs.label}</label>
-        <input
-            {...inputs} onChange={onChange} onBlur={handleFocus}
-        />
-
-
-        {error && <span className={styles.spanOne}>Wrong email or password</span>} */}
-
     return (
 
         <div className="container">
@@ -104,8 +93,14 @@ const Login = () => {
                     ))}
                     <div className={styles.divBtn}>
                         <button disabled={error} className={styles.btnlogin}>Login</button>
-
-                        {error && <p className='error-login'>Incorrect Credentials</p>}
+                        <p className={styles["p-auth-info"]}>
+                            Don't Have an Account?{" "}
+                            <Link className="link-auth" to="/register">
+                                {" "}
+                                Register
+                            </Link>{" "}
+                        </p>
+                        {error && <p className={styles['error-login']}>Incorrect Credentials</p>}
                     </div>
                 </form>
             </div>

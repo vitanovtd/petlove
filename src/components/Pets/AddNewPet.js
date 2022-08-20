@@ -46,9 +46,10 @@ const AddNewPet = () => {
         {
             id: 3,
             name: "imageUrl",
-            type: "text",
+            type: "url",
             errorMessage: "Should be a valid URL",
             label: "imageUrl",
+            pattern: `(https://[^"]*?\)`,
             required: true,
         },
         {

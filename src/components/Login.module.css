@@ -53,6 +53,10 @@
     font-size: 1.2rem;	
   }
 
+    .p-auth-info {
+    font-size: 1.6rem;
+    color: #000;
+  }
 
   /* .spanOne {
       font-size: 12px;

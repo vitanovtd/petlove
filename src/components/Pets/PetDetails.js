@@ -37,7 +37,7 @@ const PetDetails = () => {
 
                 setIsLiked(false);
             } else {
-                console.log('DARI')
+
                 setIsLiked(true);
             }
 

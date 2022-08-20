@@ -3,8 +3,8 @@
 }
 
 .breeds-left {
-  height: 30rem;
-  width: 40rem;
+  height: 50rem;
+  width: 50rem;
 }
 
 
@@ -42,6 +42,7 @@
 .breeds-right {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
 }

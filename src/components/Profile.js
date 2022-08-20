@@ -1,24 +1,30 @@
-import { Fragment, useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { PetContext } from "../context/PetContext";
 import PetItem from "./Pets/PetItem";
 import styles from "../components/Profile.module.css"
+import { Oval } from "react-loader-spinner";
 
 const Profile = () => {
     const ctx = useContext(PetContext);
     const { currentUser } = useContext(AuthContext);
 
+    const [isLoading, setLoading] = useState(true);
+
+
     const pets = ctx.pets;
+    const [petsList, setPetList] = useState([]);
+    const [likedPets, setLikedPost] = useState([]);
 
+    if (petsList.length === 0) {
+        setTimeout(async () => {
+            setPetList(pets.filter((pet) => pet.ownerId === currentUser.uid));
+            setLikedPost(pets.filter((pet) => pet.likedBy.includes(currentUser.uid)));
+            setLoading(false);
+            console.log("minawam");
+        }, 3000);
+    }
 
-
-    const petsList = pets.filter((pet) => pet.ownerId === currentUser.uid)
-
-    const likedPets = pets.filter((pet) => pet.likedBy.includes(currentUser.uid))
-
-    console.log(petsList)
-    console.log(likedPets)
-    console.log(currentUser);
 
     return (
 
@@ -27,7 +33,19 @@ const Profile = () => {
                 Hello {currentUser.email}
             </div>
             <div className="container">
-                <h3 className={styles['breeds-wrapper-title']}>You listed {petsList.length} Pets </h3>
+                <Oval
+                    height={90}
+                    width={90}
+                    color="#fff"
+                    wrapperClass="loader"
+                    visible={isLoading}
+                    ariaLabel="oval-loading"
+                    secondaryColor="#fff"
+                    strokeWidth={2}
+                    strokeWidthSecondary={2}
+                />
+
+                {isLoading ? "" : < h3 className={styles['breeds-wrapper-title']}>You listed {petsList.length} Pets </h3>}
                 <div className="grid grid--2-cols card-grid-wrapper">
 
                     {petsList.length > 0
@@ -36,7 +54,7 @@ const Profile = () => {
                     }
 
                 </div>
-                <h3 className={styles['breeds-wrapper-title']}> You liked {likedPets.length} Pets  </h3>
+                {isLoading ? "" : <h3 className={styles['breeds-wrapper-title']}> You liked {likedPets.length} Pets  </h3>}
                 <div >
 
                     {likedPets.length > 0
@@ -46,7 +64,7 @@ const Profile = () => {
 
                 </div>
             </div>
-        </section>
+        </section >
 
 
     )
