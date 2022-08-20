@@ -103,7 +103,7 @@ const Login = () => {
                         />
                     ))}
                     <div className={styles.divBtn}>
-                        <button className={styles.btnlogin}>Login</button>
+                        <button disabled={error} className={styles.btnlogin}>Login</button>
 
                         {error && <p className='error-login'>Incorrect Credentials</p>}
                     </div>

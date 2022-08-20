@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import AvailablePets from './AvailablePets';
+import InputLogin from '../InputLogin';
 
 
 const EditPet = () => {
@@ -16,27 +17,61 @@ const EditPet = () => {
     const pets = ctx.pets;
 
     const location = useLocation()
+    const pet = location.state;
     const navigate = useNavigate();
 
-    console.log(location)
+    const inputs = [
+        {
+            id: 1,
+            name: "name",
+            type: "text",
+            errorMessage: "Cannot be empty",
+            label: "Name",
+            required: true,
+        },
+        {
+            id: 2,
+            name: "bread",
+            type: "text",
+            errorMessage: "Cannot be empty",
+            label: "bread",
+            required: true,
+        },
+        {
+            id: 3,
+            name: "imageUrl",
+            type: "text",
+            errorMessage: "Should be a valid URL",
+            label: "imageUrl",
+            required: true,
+        },
+        {
+            id: 4,
+            name: "description",
+            type: "text",
+            errorMessage: "Should be at least 50 characters",
+            label: "description",
+            required: true,
+        }
+    ]
+
+    const [values, setValues] = useState({
+        name: pet.name,
+        bread: pet.bread,
+        imageUrl: pet.imageUrl,
+        description: pet.description,
+    })
 
 
-
-
-
-    const [name, setName] = useState("");
-    const [bread, setBread] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
-    const [description, setDescription] = useState("");
 
     const { petId } = useParams()
 
 
     const correctPet = pets.find((pet) => pet.id === petId);
-    // if (currentUser.iud !== correctPet.ownerId) {
-    //     navigate('/pets');
-    // }
 
+    const onChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value });
+    }
 
 
     const handlerEditPet = async (e) => {
@@ -44,19 +79,29 @@ const EditPet = () => {
         if (!correctPet) {
             return;
         }
+        console.log(currentUser.uid + 'before')
+        console.log(correctPet.ownerId + 'before')
+
+        if (currentUser.uid !== correctPet.ownerId) {
+
+            navigate('/pets');
+            return;
+
+        }
 
         // UPDATE ONE
         ctx.updateCurrentPet({
             id: petId,
-            name,
-            bread,
-            imageUrl,
-            description,
-            likedBy: correctPet.likedBy,
+            name: values.name,
+            bread: values.bread,
+            imageUrl: values.imageUrl,
+            description: values.description,
+            likedBy: correctPet.likedBy || [],
             ownerId: currentUser.uid
         });
 
-
+        // navigate('/profile')
+        navigate('/profile')
     }
 
 
@@ -66,18 +111,24 @@ const EditPet = () => {
 
             < h1 > Edit Pet</h1 >
             <div className={styles.almub}>
-                <form onSubmit={handlerEditPet}>
-                    <label htmlFor="name">name</label>
-                    <input type="text" name="name" onChange={e => setName(e.target.value)} />
-                    <label htmlFor="bread">bread</label>
-                    <input type="text" name="bread" onChange={e => setBread(e.target.value)} />
+                <div className={styles['wrapper-form']}>
+                    <div className={styles['space']}></div>
+                    <form className='grid grid--2-cols' onSubmit={handlerEditPet}>
+                        {inputs.map((input) => (
+                            <InputLogin
+                                key={input.id}
+                                {...input}
+                                value={values[input.name]}
+                                onChange={onChange}
+                            />
+                        ))}
+                        <div className={styles['btn-form-container']}>
+                            <button className={styles['submit-button']}>Edit</button>
 
-                    <label htmlFor="imageUrl">Image URL</label>
-                    <input type="text" name="imageUrl" placeholder="https://" onChange={e => setImageUrl(e.target.value)} />
-                    <label htmlFor="description">description</label>
-                    <input type="textarea" name="description" onChange={e => setDescription(e.target.value)} />
-                    <button type="submit">Edit</button>
-                </form>
+                        </div>
+                    </form>
+
+                </div>
             </div>
 
         </div>

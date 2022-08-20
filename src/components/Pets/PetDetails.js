@@ -33,9 +33,6 @@ const PetDetails = () => {
             setPet({ id: pet.id, ...pet.data() });
 
 
-            console.log(pet)
-
-
             if (!pet.data().likedBy.includes(currentUser.uid)) {
 
                 setIsLiked(false);
@@ -58,7 +55,11 @@ const PetDetails = () => {
     const editHandler = (e) => {
         e.preventDefault();
 
-        navigate(`/pets/${petId}/edit`)
+        navigate(`/pets/${petId}/edit`, {
+            state: { ...pet, id: petId }
+
+        }
+        )
     }
     const likeHandler = async (e) => {
         console.log(pet)

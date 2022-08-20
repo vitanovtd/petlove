@@ -32,7 +32,7 @@ const Profile = () => {
 
                     {petsList.length > 0
                         ? petsList.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)
-                        : <h2>No pets listed</h2>
+                        : <h2></h2>
                     }
 
                 </div>
