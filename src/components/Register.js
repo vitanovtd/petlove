@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-import styles from "./Register.module.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate, Link } from "react-router-dom";
+
 import { AuthContext } from "../context/AuthContext";
 import InputLogin from "../components/InputLogin";
+import styles from "./Register.module.css";
 
 const Register = () => {
     const inputs = [
@@ -40,8 +41,7 @@ const Register = () => {
             required: true,
         },
     ];
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
+
 
     const [error, setError] = useState(false);
 
@@ -68,12 +68,12 @@ const Register = () => {
 
         createUserWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
-                // Signed in
+
                 const user = userCredential.user;
                 dispatch({ type: "REGISTER", payload: user });
 
                 navigate("/");
-                // ...
+
             })
             .catch((error) => {
                 setError(true);
@@ -102,6 +102,7 @@ const Register = () => {
                             Login
                         </Link>{" "}
                     </p>
+                    {error && <p className={styles['error-register']}>Invalid email or password</p>}
                 </div>
             </form>
         </div>

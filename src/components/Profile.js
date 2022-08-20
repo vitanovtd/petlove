@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
+
 import { AuthContext } from "../context/AuthContext";
 import { PetContext } from "../context/PetContext";
 import PetItem from "./Pets/PetItem";
+
 import styles from "../components/Profile.module.css"
 import { Oval } from "react-loader-spinner";
 
@@ -10,24 +12,21 @@ const Profile = () => {
     const { currentUser } = useContext(AuthContext);
 
     const [isLoading, setLoading] = useState(true);
+    const [petsList, setPetList] = useState([]);
+    const [likedPets, setLikedPost] = useState([]);
 
 
     const pets = ctx.pets;
-    const [petsList, setPetList] = useState([]);
-    const [likedPets, setLikedPost] = useState([]);
 
     if (petsList.length === 0) {
         setTimeout(async () => {
             setPetList(pets.filter((pet) => pet.ownerId === currentUser.uid));
             setLikedPost(pets.filter((pet) => pet.likedBy.includes(currentUser.uid)));
             setLoading(false);
-            console.log("minawam");
         }, 3000);
     }
 
-
     return (
-
         <section className={styles['sectionProfile']}>
             <div className={styles['userEmail']}>
                 Hello {currentUser.email}
@@ -65,8 +64,6 @@ const Profile = () => {
                 </div>
             </div>
         </section >
-
-
     )
 
 }

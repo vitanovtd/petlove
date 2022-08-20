@@ -1,13 +1,12 @@
 import { useState } from "react";
-import styles from './InputLogin.module.css';
 
+import styles from './InputLogin.module.css';
 
 const InputLogin = (props) => {
     const [focused, setFocused] = useState(false);
     const { label, errorMessage, onChange, id, ...inputProps } = props;
 
     const handleFocus = (e) => {
-
         setFocused(true);
     };
 

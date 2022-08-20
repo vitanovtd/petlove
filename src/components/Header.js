@@ -1,12 +1,14 @@
-import { Fragment } from 'react';
-import styles from './Header.module.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
-
+import { Fragment } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { signOut } from "firebase/auth";
 import { auth } from '../firebase';
+
+import { AuthContext } from '../context/AuthContext';
+import styles from './Header.module.css';
+
+
 const Header = () => {
     const { dispatch } = useContext(AuthContext);
     const { currentUser } = useContext(AuthContext);
@@ -16,12 +18,12 @@ const Header = () => {
         e.preventDefault();
 
         signOut(auth).then(() => {
-            // Sign-out successful.
+
 
             dispatch({ type: "LOGOUT" })
             navigate('/');
         }).catch((error) => {
-            // An error happened.
+
             console.log(error);
         });
     }
@@ -35,7 +37,7 @@ const Header = () => {
 
 
             <div className={styles.banner}>
-                {/* header */}
+
                 <div className="container">
                     <header className={styles.header}>
                         <Link to="/">
@@ -89,7 +91,7 @@ const Header = () => {
 
                                 <li>
                                     <a className={styles['ctabtn']} href="#">
-                                        Section 5
+                                        Contact Us
                                     </a>
                                 </li>
                             </ul>

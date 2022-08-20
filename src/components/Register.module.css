@@ -51,4 +51,7 @@
     color: #000;
   }
   
-  
+  .error-register {	
+    color: red;	
+    font-size: 1.4rem;	
+  }

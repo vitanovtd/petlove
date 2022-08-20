@@ -1,47 +1,40 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate, Link, useParams } from 'react-router-dom';
-import { PetContext } from '../../context/PetContext';
-import styles from '../Pets/PetDetails.module.css';
-import { AuthContext } from '../../context/AuthContext';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { deletePet, getOne } from '../../services/petService';
 
+import { PetContext } from '../../context/PetContext';
+import { AuthContext } from '../../context/AuthContext';
+import styles from '../Pets/PetDetails.module.css';
 
 
 const PetDetails = () => {
     const { currentUser } = useContext(AuthContext);
     const ctx = useContext(PetContext);
 
-
-    const { petId } = useParams();
-
     const [pet, setPet] = useState({});
     const [isLiked, setIsLiked] = useState(null);
-
     const [confirmDelete, setConfirmDelete] = useState(false);
+
+    const { petId } = useParams();
 
     const navigate = useNavigate();
 
 
-    console.log(pet)
-    console.log(isLiked)
-    console.log(pet.likedBy)
     const isOwner = pet.ownerId === currentUser?.uid;
+
+
     useEffect(() => {
 
         getOne(petId).then((pet) => {
 
             setPet({ id: pet.id, ...pet.data() });
 
-
             if (!pet.data().likedBy.includes(currentUser?.uid)) {
-
                 setIsLiked(false);
             } else {
-
                 setIsLiked(true);
             }
-
-
 
         }).catch((error) => {
             console.log(error)
@@ -57,28 +50,20 @@ const PetDetails = () => {
 
         navigate(`/pets/${petId}/edit`, {
             state: { ...pet, id: petId }
-
         }
         )
     }
     const likeHandler = async (e) => {
-        console.log(pet)
-        console.log(pet.id)
         e.preventDefault();
 
-
-
         if (isLiked) {
-
             setIsLiked(false);
             ctx.unLikePet(pet, currentUser.uid);
         } else {
-
             setIsLiked(true);
             ctx.likePet(pet, currentUser.uid);
         }
     }
-
 
     const deleteHandler = (e) => {
         e.preventDefault();
@@ -123,8 +108,6 @@ const PetDetails = () => {
             </div>
         </div>
     );
-
-
 
 }
 

@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
+
 import { getDoc } from "firebase/firestore";
+
 import { addPet, getAll, updatePet } from "../services/petService";
 
 
@@ -35,13 +37,13 @@ export const PetContextProvider = (props) => {
 
 
     const addNewPet = async (pet) => {
-        
+
         const refPet = await addPet(pet);
         const docSnap = await getDoc(refPet);
 
         setPets((prevState) =>
             prevState.concat({
-                // ...docSnap.data()
+
                 id: docSnap.id,
                 name: docSnap.data().name,
                 bread: docSnap.data().bread,
@@ -61,13 +63,11 @@ export const PetContextProvider = (props) => {
         let likedBy = pet.likedBy || [];
         const updatedLikePet = { ...pet, likedBy: [...likedBy, userId] }
 
-        await updateCurrentPet(Object.assign(updatedLikePet))
+        await updateCurrentPet(updatedLikePet);
 
     }
 
     const unLikePet = async (pet, userId) => {
-        const index = pets.findIndex((p) => p.id === pet.id);
-        const newRef = [...pets];
 
         const likedIndex = pet.likedBy.findIndex((id) => id === userId);
 
@@ -79,13 +79,12 @@ export const PetContextProvider = (props) => {
         ];
 
         const updatedPet = { ...pet, likedBy: likedBy };
-        console.log(updatedPet)
-        // console.log(Object.assign(updatedPet))
+
         await updateCurrentPet(updatedPet);
     }
 
     const updateCurrentPet = async (pet) => {
-        console.log(pet)
+
         const result = await updatePet(pet)
         const index = pets.findIndex((p) => p.id === result.id)
 
@@ -99,8 +98,6 @@ export const PetContextProvider = (props) => {
     const removePet = (petId) => {
         setPets((prevState) => prevState.filter((pet) => pet.id !== petId));
     };
-
-
 
     return (
         <PetContext.Provider

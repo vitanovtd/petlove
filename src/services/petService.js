@@ -1,8 +1,5 @@
 import { db } from "../firebase";
-import { collection, doc, getDocs, addDoc, updateDoc, setDoc, onSnapshot, getDoc, deleteDoc } from "firebase/firestore";
-
-
-
+import { collection, doc, getDocs, addDoc, setDoc, getDoc, deleteDoc } from "firebase/firestore";
 
 
 export async function addPet(data) {
@@ -20,22 +17,16 @@ export async function getOne(petId) {
         return console.log('No such document')
     }
 
-
-
-    // return docSnap.data();
 }
 
 export async function getAll() {
+    
     const querySnapshot = await getDocs(collection(db, "pets"));
     return querySnapshot;
 }
 
 export async function updatePet(pet) {
-    // const petRef = doc(db, "pets", pet.id)
-    // // // Set the "capital" field of the city 'DC'
-    // return await updateDoc(petRef, {
-    //     ...pet
-    // });
+
     await setDoc(doc(db, "pets", pet.id), {
         ...pet
     });

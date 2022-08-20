@@ -1,11 +1,8 @@
-import styles from '../Pets/AvailablePets.module.css';
-
-import { PetContext } from '../../context/PetContext';
 import { useContext } from 'react';
 
 import PetItem from './PetItem';
-
-
+import { PetContext } from '../../context/PetContext';
+import styles from '../Pets/AvailablePets.module.css';
 
 
 const AvailablePets = () => {
@@ -24,12 +21,6 @@ const AvailablePets = () => {
             </div>
         </div>
     )
-
-
-
-    // fetch only 4 limited items 
-
-
 
 }
 

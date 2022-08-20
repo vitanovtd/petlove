@@ -1,7 +1,9 @@
 import { Fragment, useContext } from 'react';
-import styles from './Home.module.css';
-import { PetContext } from './../context/PetContext';
+
 import PetItem from './Pets/PetItem';
+import { PetContext } from './../context/PetContext';
+import styles from './Home.module.css';
+
 const Home = () => {
 
     const ctx = useContext(PetContext);

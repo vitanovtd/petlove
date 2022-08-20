@@ -1,27 +1,18 @@
-import styles from '../Pets/AddNewPet.module.css'
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
-import { db } from '../../firebase';
 import { useState } from 'react';
-import { getAll } from '../../services/petService'
-import { PetContext } from '../../context/PetContext'
 import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import InputLogin from '../InputLogin';
 
+import { PetContext } from '../../context/PetContext'
+import { AuthContext } from '../../context/AuthContext';
+
+import InputLogin from '../InputLogin';
+import styles from '../Pets/AddNewPet.module.css'
 
 
 const AddNewPet = () => {
 
     const ctx = useContext(PetContext)
     const { currentUser } = useContext(AuthContext);
-
-
-    // const [name, setName] = useState("");
-    // const [bread, setBread] = useState("");
-    // const [imageUrl, setImageUrl] = useState("");
-    // const [description, setDescription] = useState("");
-
 
 
     const navigate = useNavigate();
@@ -70,11 +61,6 @@ const AddNewPet = () => {
     })
 
 
-    // if (name.trim() !== '') {
-    //     values.name = name;
-    // }else {
-    //     errorMessage('')
-    // }
 
 
     const onChange = (e) => {
@@ -84,10 +70,7 @@ const AddNewPet = () => {
 
     const handleAddPet = async (e) => {
         e.preventDefault();
-        // await ctx.getAll()
 
-
-        //Add new Pet 
         try {
             ctx.addNewPet({
                 name: values.name,
@@ -102,15 +85,12 @@ const AddNewPet = () => {
             console.log(error)
         }
 
-
         navigate('/pets');
     }
 
 
 
     return (
-
-
 
         <div className="container">
             <h1>Add Pet</h1>
@@ -136,13 +116,7 @@ const AddNewPet = () => {
             </div>
         </div>
 
-
-
     );
-
-
-
-
 
 }
 

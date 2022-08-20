@@ -1,12 +1,13 @@
-import { Fragment, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
-import styles from './Login.module.css'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
-import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import InputLogin from '../components/InputLogin'
 
+import InputLogin from '../components/InputLogin'
+import { AuthContext } from '../context/AuthContext';
+
+import styles from './Login.module.css'
 
 
 const Login = () => {
@@ -34,17 +35,10 @@ const Login = () => {
 
     const [error, setError] = useState(false);
 
-
-
-
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-
     const [values, setValues] = useState({
         email: "",
         password: "",
     })
-
 
 
     const navigate = useNavigate();
@@ -58,17 +52,13 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
 
-
-
-
         signInWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 dispatch({ type: "LOGIN", payload: user })
-                console.log(user);
                 navigate('/');
-                // ...
+
             })
             .catch((error) => {
 
@@ -109,7 +99,5 @@ const Login = () => {
 
     )
 }
-
-// value={values[inputs.name]}
 
 export default Login;

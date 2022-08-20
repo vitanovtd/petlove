@@ -1,29 +1,22 @@
-import styles from "../Pets/EditPet.module.css";
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { Fragment, useEffect, useState } from "react";
-import { getAll } from "../../services/petService";
-import { PetContext } from "../../context/PetContext";
+import { useState } from "react";
 import { useContext } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+import { PetContext } from "../../context/PetContext";
 import { AuthContext } from "../../context/AuthContext";
-import {
-    Navigate,
-    useLocation,
-    useNavigate,
-    useParams,
-} from "react-router-dom";
-import AvailablePets from "./AvailablePets";
+
 import InputLogin from "../InputLogin";
+import styles from "../Pets/EditPet.module.css";
 
 const EditPet = () => {
-    const ctx = useContext(PetContext);
-    const { currentUser } = useContext(AuthContext);
-    const pets = ctx.pets;
 
     const location = useLocation();
-    const pet = location.state;
     const navigate = useNavigate();
-    console.log(location);
+    const ctx = useContext(PetContext);
+    const { currentUser } = useContext(AuthContext);
+
+    const pets = ctx.pets;
+    const pet = location.state;
 
     const inputs = [
         {
@@ -88,8 +81,6 @@ const EditPet = () => {
         if (!correctPet) {
             return;
         }
-        console.log(currentUser.uid + "before");
-        console.log(correctPet.ownerId + "before");
 
         if (currentUser.uid !== correctPet.ownerId) {
             navigate("/pets");
@@ -97,15 +88,20 @@ const EditPet = () => {
         }
 
         // UPDATE ONE
-        ctx.updateCurrentPet({
-            id: petId,
-            name: values.name,
-            bread: values.bread,
-            imageUrl: values.imageUrl,
-            description: values.description,
-            likedBy: correctPet.likedBy || [],
-            ownerId: currentUser.uid,
-        });
+        try {
+            ctx.updateCurrentPet({
+                id: petId,
+                name: values.name,
+                bread: values.bread,
+                imageUrl: values.imageUrl,
+                description: values.description,
+                likedBy: correctPet.likedBy || [],
+                ownerId: currentUser.uid,
+            });
+
+        } catch (error) {
+            console.log(error)
+        }
 
         navigate("/profile");
     };
@@ -116,10 +112,7 @@ const EditPet = () => {
             <div className={styles.almub}>
                 <div className={styles["wrapper-form"]}>
                     <div className={styles["space"]}></div>
-                    <form
-                        className="grid grid--2-cols grid--center--v"
-                        onSubmit={handlerEditPet}
-                    >
+                    <form className="grid grid--2-cols grid--center--v" onSubmit={handlerEditPet}>
                         {inputs.map((input) => (
                             <InputLogin
                                 key={input.id}
@@ -129,10 +122,7 @@ const EditPet = () => {
                             />
                         ))}
                         <div className={styles["btn-form-container"]}>
-                            <button
-                                className={styles["cancel-button"]}
-                                onClick={cancelHandler}
-                            >
+                            <button className={styles["cancel-button"]} onClick={cancelHandler}>
                                 Cancel
                             </button>
                         </div>
