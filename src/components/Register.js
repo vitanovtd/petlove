@@ -63,7 +63,10 @@ const Register = () => {
         e.preventDefault();
 
         if (values.password !== values.repeatPassword) {
-            //  TODO needs to add custom validation
+            setError(true)
+            return;
+        } else {
+            setError(false)
         }
 
         createUserWithEmailAndPassword(auth, values.email, values.password)
@@ -102,7 +105,7 @@ const Register = () => {
                             Login
                         </Link>{" "}
                     </p>
-                    {error && <p className={styles['error-register']}>Invalid email or password</p>}
+                    {error && <p className={styles['error-register']}>passwords does not match</p>}
                 </div>
             </form>
         </div>

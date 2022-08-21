@@ -54,7 +54,7 @@ const Profile = () => {
 
                 </div>
                 {isLoading ? "" : <h3 className={styles['breeds-wrapper-title']}> You liked {likedPets.length} Pets  </h3>}
-                <div >
+                <div className="grid grid--2-cols card-grid-wrapper" >
 
                     {likedPets.length > 0
                         ? likedPets.map(pet => <PetItem key={pet.id} pet={pet} index={pets.indexOf(pet)} />)

@@ -28,7 +28,6 @@ const Login = () => {
             type: "password",
             placeholder: "Password",
             errorMessage: "Minimum six characters, at least one letter and one number",
-            // pattern: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$",
             required: true,
         }
     ]
