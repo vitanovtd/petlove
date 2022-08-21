@@ -27,21 +27,20 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Pages:
+## Pages
 
--Home Page with dynamic rendering of random pets listing
--Login / Register
--All Pets (catalogue)
--Pet Details Page - Delete and Edit available only for owner. Users can add to favorites pet
--Add Pet Page -  create new pet listing
--Edit Pet Page - edit pet listing
--Profile page  - with list of added pets and liked pets
+ - Home Page with dynamic rendering of random pets listing
+ - Login / Register
+ - All Pets (catalogue)
+ - Pet Details Page - Delete and Edit available only for owner. Users can add to favorites pet
+ - Add Pet Page -  create new pet listing
+ - Edit Pet Page - edit pet listing
+ - Profile page  - with list of added pets and liked pets
 
-## Features:
-
--Registration/Authentication
--Like / Unlike
--Profile page
+## Features
+- Registration/Authention
+- Like / Unlike
+- Profile page
 
 
 ## Technologies
